@@ -1,18 +1,18 @@
-import { Card } from '@/components/card';
-import { Video } from '@/components/video';
-import { get } from '@vercel/edge-config';
-import type { ReactElement } from 'react';
+import { Card } from "::components/card"
+import { Video } from "::components/video"
+import { get } from "@vercel/edge-config"
+import type { ReactElement } from "react"
 
 export const VideoCard = async (): Promise<ReactElement> => {
-  const video = await get<string>('video');
+	const video = await get<string>("video")
 
-  if (!video) {
-    return <div />;
-  }
+	if (!video) {
+		return <div />
+	}
 
-  return (
-    <Card title="Latest Drone Video">
-      <Video url={video} controls />
-    </Card>
-  );
-};
+	return (
+		<Card title="Latest Drone Video">
+			<Video id={video} title="Latest Drone Video" />
+		</Card>
+	)
+}

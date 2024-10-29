@@ -3,57 +3,91 @@
 @tailwind utilities;
 
 * {
-  min-width: 0;
+	min-width: 0;
 }
 
 html {
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizelegibility;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizelegibility;
 }
 
 body {
-  min-height: 100dvh;
+	min-height: 100dvh;
 }
 
 ::selection {
-  @apply bg-orange-100 dark:bg-orange-900;
+	@apply bg-orange-100 dark:bg-orange-900;
+}
+
+pre::-webkit-scrollbar {
+	display: none;
+}
+
+pre {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
 }
 
 .shiki {
-  background-color: var(--shiki-light-bg);
-  color: var(--shiki-light);
+	background-color: var(--shiki-light-bg);
+	color: var(--shiki-light);
 }
 
 .shiki span {
-  color: var(--shiki-light);
+	color: var(--shiki-light);
 }
 
 @media (prefers-color-scheme: dark) {
-  .shiki {
-    background-color: var(--shiki-dark-bg);
-    color: var(--shiki-dark);
-    @apply border-neutral-700;
-  }
+	.shiki {
+		background-color: var(--shiki-dark-bg);
+		color: var(--shiki-dark);
+		@apply border-neutral-700;
+	}
 
-  .shiki span {
-    color: var(--shiki-dark);
-  }
+	.shiki span {
+		color: var(--shiki-dark);
+	}
 }
 
 .shiki code {
-  display: grid;
-  font-size: 13px;
-  counter-reset: line;
+	display: grid;
+	font-size: 13px;
+	counter-reset: line;
 }
 
-.shiki .line:before {
-  content: counter(line);
-  counter-increment: line;
+/* .shiki .line:before {
+	content: counter(line);
+	counter-increment: line;
 
-  @apply inline-block w-4 mr-8 text-neutral-500 dark:text-neutral-400 text-right;
+	@apply inline-block w-4 mr-8 text-neutral-500 dark:text-neutral-400 text-right;
 }
-
+ */
 .shiki[title]:before {
-  content: attr(title);
-  @apply inline-block text-neutral-500 dark:text-neutral-400 text-right mb-6 text-sm;
+	content: attr(title);
+	@apply inline-block text-neutral-500 dark:text-neutral-400 text-right mb-6 text-sm;
+}
+
+.meta {
+	position: sticky;
+	top: var(--page-top);
+	white-space: nowrap;
+	z-index: 1;
+	grid-column: 1;
+}
+
+@media (max-width: 768px) {
+	.meta {
+		position: relative;
+		top: 0;
+		width: 100%;
+		margin: 0 0 42px;
+	}
+}
+
+@media (max-width: 1024px) {
+	[basics-sidenote]:not(.meta) {
+		margin: var(--gap-2x) 0;
+		margin-left: var(--gap-2x);
+		width: calc(100% - var(--gap-2x));
+	}
 }

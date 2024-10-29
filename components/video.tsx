@@ -1,32 +1,17 @@
-'use client';
+"use client"
 
-import { cn } from '@/lib/utils';
-import dynamic from 'next/dynamic';
-import type { FC } from 'react';
-import type { ReactPlayerProps } from 'react-player';
-
-const ReactPlayer = dynamic(
-  async () =>
-    import(
-      /* webpackChunkName: "react-player" */
-      'react-player'
-    ),
-  { ssr: false }
-);
-
-type VideoProperties = ReactPlayerProps & {
-  readonly className?: string;
-};
+import { cx } from "::lib/utils"
+import type { FC } from "react"
+import LiteYouTubeEmbed, { type LiteYouTubeProps } from "react-lite-youtube-embed"
+import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
+type VideoProperties = LiteYouTubeProps & {
+	readonly className?: string
+}
 
 export const Video: FC<VideoProperties> = ({ className, ...properties }) => (
-  <div
-    className={cn('relative aspect-video overflow-hidden rounded', className)}
-  >
-    <ReactPlayer
-      {...properties}
-      width="100%"
-      height="100%"
-      style={{ position: 'absolute', inset: 0 }}
-    />
-  </div>
-);
+	<div className={cx("relative aspect-video overflow-hidden rounded", className)}>
+		<div style={{ position: "absolute", inset: 0 }}>
+			<LiteYouTubeEmbed {...properties} webp poster="maxresdefault" />
+		</div>
+	</div>
+)

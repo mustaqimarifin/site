@@ -1,6 +1,6 @@
-import resolveConfig from 'tailwindcss/resolveConfig';
-import tailwindConfig from '../tailwind.config';
+import resolveConfig from "tailwindcss/resolveConfig"
+import tailwindConfig from "../tailwind.config"
 
-const tailwind = resolveConfig(tailwindConfig);
+const tailwind = resolveConfig(tailwindConfig)
 
-export default tailwind;
+export default tailwind
